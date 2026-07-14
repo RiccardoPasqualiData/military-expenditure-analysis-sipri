@@ -60,7 +60,7 @@ subsequent operation deduplication, lookups, pivots worked on consistent keys.
 
 **Raw data (before):**
 
-![Raw data before cleaning](IMG/phase1_raw_data_png.png)
+![Raw data before cleaning](IMG/phase1_raw_data.png.png)
 
 **Clean data (after):**
 
