@@ -64,7 +64,7 @@ subsequent operation deduplication, lookups, pivots worked on consistent keys.
 
 **Clean data (after):**
 
-![Clean data after cleaning](IMG/phase1_clean_data_png.png)
+![Clean data after cleaning](IMG/phase1_clean_data.png.png)
 
 ## Phase 2 Data organisation
 
