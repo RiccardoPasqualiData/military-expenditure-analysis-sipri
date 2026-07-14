@@ -111,7 +111,7 @@ Three calculated columns turn raw numbers into analysable categories:
 ##  Phase-4  Nested logical formulas
 
 The **Military Effort** column classifies the burden of military spending relative
-to GDP. In its final version (see `sipri_project_analysis.xlsx`) it combines three
+to GDP. In its final version (see `sipri_analysis.xlsx`) it combines three
 nesting levels plus an `AND`, and handles the missing value first  without that
 guard, Excel's text-vs-number comparison rules would silently misclassify the
 country with the missing figure:
