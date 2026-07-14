@@ -56,7 +56,7 @@ I removed the spaces *before* removing duplicates. To Excel, "United States" and
 "United States " are two different strings: running Remove Duplicates first would
 have caught only 2 of the 3 duplicates, leaving a hidden one in the dataset. In
 general, I standardised the text (spaces, casing, naming) first, so that every
-subsequent operation — deduplication, lookups, pivots — worked on consistent keys.
+subsequent operation deduplication, lookups, pivots worked on consistent keys.
 
 **Raw data (before):**
 
@@ -88,7 +88,7 @@ Three calculated columns turn raw numbers into analysable categories:
 
   ![Trend formula](IMG/phase3_formula_trend.png)
 
-- **Spending Category** — nested IF classifying countries as High (≥ $100bn),
+- **Spending Category** nested IF classifying countries as High (≥ $100bn),
   Medium (≥ $30bn) or Low. Thresholds are inclusive and chosen to isolate the three
   "great powers" (USA, China, Russia) in the top band while keeping the middle band
   large enough for meaningful comparison:
@@ -139,7 +139,7 @@ the `Countries_Registry` lookup sheet:
 ![VLOOKUP formula](IMG/phase5_vlookup_formula.png)
 
 The exact-match requirement (`FALSE`) doubles as a data-quality check: any name not
-matching the registry returns an error — which is how the "Holland" vs
+matching the registry returns an error which is how the "Holland" vs
 "Netherlands" inconsistency was caught and fixed back in Phase 1.
 
 A small verification dashboard below the table answers point questions on the
@@ -153,12 +153,12 @@ dataset:
 
 ![Verification dashboard](IMG/phase5_dashboard.png)
 
-##  Phase 6 — Analysis with pivot tables
+##  Phase 6  Analysis with pivot tables
 
 All pivots are built on SpendTable, so they refresh automatically when the source
 data changes.
 
-**Pivot 1 — Total spending by region**
+**Pivot 1  Total spending by region**
 *Setup:* Region in Rows, Spending 2024 in Values (Sum), sorted descending.
 *Finding:* North America alone accounts for **$1,026bn** over 40% of the dataset
 total of **$2,461bn** followed by East Asia ($433bn) and Western Europe ($375bn).
@@ -166,7 +166,7 @@ The top three regions concentrate roughly 75% of tracked spending.
 
 ![Pivot: spending by region](IMG/phase6_pivot_region.png)
 
-**Pivot 2 — NATO vs non-NATO comparison**
+**Pivot 2 NATO vs non-NATO comparison**
 *Setup:* NATO in Rows; in Values: Spending 2024 (Sum), % GDP 2024 (Average summing
 GDP shares across countries would be meaningless), Country (Count).
 *Finding:* the 15 NATO members outspend the 18 non-members in absolute terms
@@ -177,7 +177,7 @@ data, two metrics, two opposite rankings — the choice of metric shapes the sto
 
 ![Pivot: NATO vs non-NATO](IMG/phase6_pivot_nato.png)
 
-**Pivot chart**  regional totals as horizontal bars for immediate comparison.
+**Pivot chart** regional totals as horizontal bars for immediate comparison.
 
 ![Pivot chart: spending by region](IMG/phase6_pivotchart.png)
 
