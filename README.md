@@ -77,7 +77,7 @@ standardised (1 decimal for spending values, consistent % GDP display).
 
 ![Formatted table](IMG/phase2_formatted_table.png)
 
-## Phase-3 — New categories with logical functions
+## Phase-3 New categories with logical functions
 
 Three calculated columns turn raw numbers into analysable categories:
 
