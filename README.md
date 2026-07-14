@@ -60,11 +60,11 @@ subsequent operation — deduplication, lookups, pivots — worked on consistent
 
 **Raw data (before):**
 
-![Raw data before cleaning](img/phase1_raw_data_png.png)
+![Raw data before cleaning](IMG/phase1_raw_data_png.png)
 
 **Clean data (after):**
 
-![Clean data after cleaning](img/phase1_clean_data_png.png)
+![Clean data after cleaning](IMG/phase1_clean_data_png.png)
 
 ## Phase 2 Data organisation
 
@@ -75,7 +75,7 @@ dynamic source for the pivot tables. The table was sorted by 2024 spending in
 descending order, the header row was frozen for scrolling, and number formats were
 standardised (1 decimal for spending values, consistent % GDP display).
 
-![Formatted table](img/phase2_formatted_table.png)
+![Formatted table](IMG/phase2_formatted_table.png)
 
 ## Phase 3 — New categories with logical functions
 
@@ -86,7 +86,7 @@ Three calculated columns turn raw numbers into analysable categories:
 
   `=IF([@[Spending 2024 (bn $)]]>[@[Spending 2023 (bn $)]],"Increasing",IF([@[Spending 2024 (bn $)]]<[@[Spending 2023 (bn $)]],"Decreasing","Stable"))`
 
-  ![Trend formula](img/phase3_formula_trend.png)
+  ![Trend formula](IMG/phase3_formula_trend.png)
 
 - **Spending Category** — nested IF classifying countries as High (≥ $100bn),
   Medium (≥ $30bn) or Low. Thresholds are inclusive and chosen to isolate the three
@@ -95,7 +95,7 @@ Three calculated columns turn raw numbers into analysable categories:
 
   `=IF([@[Spending 2024 (bn $)]]>=100,"High",IF([@[Spending 2024 (bn $)]]>=30,"Medium","Low"))`
 
-  ![Spending Category formula](img/phase3_formula_category.png)
+  ![Spending Category formula](IMG/phase3_formula_category.png)
 
 - **% Change** — year-on-year variation, with `IFERROR` handling the country whose
   2023 figure is missing (Algeria), which would otherwise break the division:
@@ -104,9 +104,9 @@ Three calculated columns turn raw numbers into analysable categories:
 
 **The calculated columns in the table:**
 
-![Calculated columns overview](img/phase3_calculated_columns.png)
+![Calculated columns overview](IMG/phase3_calculated_columns.png)
 
-![Calculated columns detail](img/phase3_columns_result.png)
+![Calculated columns detail](IMG/phase3_columns_result.png)
 
 ##  Phase 4  Nested logical formulas
 
@@ -127,7 +127,7 @@ Sanity checks: Israel (8.8% of GDP, spending up 69%) → *High and growing effor
 Ukraine (34.5% of GDP, slightly decreasing) → *High effort*; Switzerland (0.7%) →
 *Low effort*; Taiwan (missing % GDP) → *n/a*.
 
-![Military Effort formula](img/phase4_formula_effort.png)
+![Military Effort formula](IMG/phase4_formula_effort.png)
 
 ## 🔍 Phase 5 — Cross-referencing data with VLOOKUP
 
@@ -136,7 +136,7 @@ the `Countries_Registry` lookup sheet:
 
 `=VLOOKUP([@Country],Countries_Registry!$A$1:$D$34,2,FALSE)` *(index 3 for NATO, 4 for Continent)*
 
-![VLOOKUP formula](img/phase5_vlookup_formula.png)
+![VLOOKUP formula](IMG/phase5_vlookup_formula.png)
 
 The exact-match requirement (`FALSE`) doubles as a data-quality check: any name not
 matching the registry returns an error — which is how the "Holland" vs
@@ -151,7 +151,7 @@ dataset:
   → **Israel** — INDEX+MATCH is used here to overcome VLOOKUP's left-lookup
   limitation: the country name sits to the *left* of the value being searched.
 
-![Verification dashboard](img/phase5_dashboard.png)
+![Verification dashboard](IMG/phase5_dashboard.png)
 
 ##  Phase 6 — Analysis with pivot tables
 
@@ -164,7 +164,7 @@ data changes.
 total of **$2,461bn** followed by East Asia ($433bn) and Western Europe ($375bn).
 The top three regions concentrate roughly 75% of tracked spending.
 
-![Pivot: spending by region](img/phase6_pivot_region.png)
+![Pivot: spending by region](IMG/phase6_pivot_region.png)
 
 **Pivot 2 — NATO vs non-NATO comparison**
 *Setup:* NATO in Rows; in Values: Spending 2024 (Sum), % GDP 2024 (Average summing
@@ -175,11 +175,11 @@ relative burden (**avg 5.1% of GDP vs 2.2%**), driven by countries under active
 conflict or regional tension (Ukraine 34.5%, Israel, Saudi Arabia, Algeria). Same
 data, two metrics, two opposite rankings — the choice of metric shapes the story.
 
-![Pivot: NATO vs non-NATO](img/phase6_pivot_nato.png)
+![Pivot: NATO vs non-NATO](IMG/phase6_pivot_nato.png)
 
 **Pivot chart**  regional totals as horizontal bars for immediate comparison.
 
-![Pivot chart: spending by region](img/phase6_pivotchart.png)
+![Pivot chart: spending by region](IMG/phase6_pivotchart.png)
 
 ##  Key findings
 
