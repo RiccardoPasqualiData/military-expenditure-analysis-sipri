@@ -97,7 +97,7 @@ Three calculated columns turn raw numbers into analysable categories:
 
   ![Spending Category formula](IMG/phase3_formula_category.png)
 
-- **% Change** — year-on-year variation, with `IFERROR` handling the country whose
+- **% Change**  year-on-year variation, with `IFERROR` handling the country whose
   2023 figure is missing (Algeria), which would otherwise break the division:
 
   `=IFERROR(([@[Spending 2024 (bn $)]]-[@[Spending 2023 (bn $)]])/[@[Spending 2023 (bn $)]],"")`
@@ -112,7 +112,7 @@ Three calculated columns turn raw numbers into analysable categories:
 
 The **Military Effort** column classifies the burden of military spending relative
 to GDP. In its final version (see `sipri_project_analysis.xlsx`) it combines three
-nesting levels plus an `AND`, and handles the missing value first — without that
+nesting levels plus an `AND`, and handles the missing value first  without that
 guard, Excel's text-vs-number comparison rules would silently misclassify the
 country with the missing figure:
 
@@ -129,7 +129,7 @@ Ukraine (34.5% of GDP, slightly decreasing) → *High effort*; Switzerland (0.7%
 
 ![Military Effort formula](IMG/phase4_formula_effort.png)
 
-## Phase-5 — Cross-referencing data with VLOOKUP
+## Phase-5 Cross-referencing data with VLOOKUP
 
 The table was enriched with **Region**, **NATO membership** and **Continent** from
 the `Countries_Registry` lookup sheet:
@@ -148,7 +148,7 @@ dataset:
 - `=COUNTIF(SpendTable[NATO],"Yes")` → **15** NATO members (of 33 countries)
 - `=MAX(SpendTable[% Change])` → **+69%**, the sharpest increase
 - `=INDEX(SpendTable[Country],MATCH(MAX(SpendTable[% Change]),SpendTable[% Change],0))`
-  → **Israel** — INDEX+MATCH is used here to overcome VLOOKUP's left-lookup
+  → **Israel**  INDEX+MATCH is used here to overcome VLOOKUP's left-lookup
   limitation: the country name sits to the *left* of the value being searched.
 
 ![Verification dashboard](IMG/phase5_dashboard.png)
@@ -173,7 +173,7 @@ GDP shares across countries would be meaningless), Country (Count).
 (**$1,458bn vs $1,003bn**), but non-NATO countries carry more than double the
 relative burden (**avg 5.1% of GDP vs 2.2%**), driven by countries under active
 conflict or regional tension (Ukraine 34.5%, Israel, Saudi Arabia, Algeria). Same
-data, two metrics, two opposite rankings — the choice of metric shapes the story.
+data, two metrics, two opposite rankings  the choice of metric shapes the story.
 
 ![Pivot: NATO vs non-NATO](IMG/phase6_pivot_nato.png)
 
