@@ -33,7 +33,7 @@ logical and lookup functions, and aggregation with pivot tables.
   text, missing values) to practise real-world data cleaning techniques. Figures are
   rounded and were checked against the official SIPRI database.
 
-##  Phase 1 Data cleaning
+##  Phase 1-Data cleaning
 
 The raw dataset contained 36 rows. After cleaning, 33 unique countries remained.
 All cleaning was performed on a copy (`Clean_Data`), keeping the original
@@ -66,7 +66,7 @@ subsequent operation deduplication, lookups, pivots worked on consistent keys.
 
 ![Clean data after cleaning](IMG/phase1_clean_data.png.png)
 
-## Phase 2 Data organisation
+## Phase-2 Data organisation
 
 The cleaned range was converted into a formatted Excel Table (Ctrl+T) named
 **SpendTable**. This provides automatic filters, self-propagating formulas,
@@ -77,7 +77,7 @@ standardised (1 decimal for spending values, consistent % GDP display).
 
 ![Formatted table](IMG/phase2_formatted_table.png)
 
-## Phase 3 — New categories with logical functions
+## Phase-3 — New categories with logical functions
 
 Three calculated columns turn raw numbers into analysable categories:
 
@@ -108,7 +108,7 @@ Three calculated columns turn raw numbers into analysable categories:
 
 ![Calculated columns detail](IMG/phase3_columns_result.png)
 
-##  Phase 4  Nested logical formulas
+##  Phase-4  Nested logical formulas
 
 The **Military Effort** column classifies the burden of military spending relative
 to GDP. In its final version (see `sipri_project_analysis.xlsx`) it combines three
@@ -129,7 +129,7 @@ Ukraine (34.5% of GDP, slightly decreasing) → *High effort*; Switzerland (0.7%
 
 ![Military Effort formula](IMG/phase4_formula_effort.png)
 
-## 🔍 Phase 5 — Cross-referencing data with VLOOKUP
+## Phase-5 — Cross-referencing data with VLOOKUP
 
 The table was enriched with **Region**, **NATO membership** and **Continent** from
 the `Countries_Registry` lookup sheet:
@@ -153,12 +153,12 @@ dataset:
 
 ![Verification dashboard](IMG/phase5_dashboard.png)
 
-##  Phase 6  Analysis with pivot tables
+##  Phase-6  Analysis with pivot tables
 
 All pivots are built on SpendTable, so they refresh automatically when the source
 data changes.
 
-**Pivot 1  Total spending by region**
+**Pivot-1  Total spending by region**
 *Setup:* Region in Rows, Spending 2024 in Values (Sum), sorted descending.
 *Finding:* North America alone accounts for **$1,026bn** over 40% of the dataset
 total of **$2,461bn** followed by East Asia ($433bn) and Western Europe ($375bn).
@@ -166,7 +166,7 @@ The top three regions concentrate roughly 75% of tracked spending.
 
 ![Pivot: spending by region](IMG/phase6_pivot_region.png)
 
-**Pivot 2 NATO vs non-NATO comparison**
+**Pivot-2 NATO vs non-NATO comparison**
 *Setup:* NATO in Rows; in Values: Spending 2024 (Sum), % GDP 2024 (Average summing
 GDP shares across countries would be meaningless), Country (Count).
 *Finding:* the 15 NATO members outspend the 18 non-members in absolute terms
@@ -177,7 +177,7 @@ data, two metrics, two opposite rankings — the choice of metric shapes the sto
 
 ![Pivot: NATO vs non-NATO](IMG/phase6_pivot_nato.png)
 
-**Pivot chart** regional totals as horizontal bars for immediate comparison.
+**Pivot-chart** regional totals as horizontal bars for immediate comparison.
 
 ![Pivot chart: spending by region](IMG/phase6_pivotchart.png)
 
