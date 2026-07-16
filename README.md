@@ -217,11 +217,11 @@ Phase 1 turned raw SIPRI data into a clean, enriched dataset. Phase 2 turns that
 
 ## Dashboard preview
 
-![Dashboard overview](images/dashboard_full.png)
+![Dashboard overview](IMG/dashboard_full.png)
 
 *Interactive filtering in action, Spending Category:High*
 
-![Dashboard filtered by Spending Category:High](images/dashboard_filtered.png)
+![Dashboard filtered by Spending Category:High](IMG/dashboard_filtered.png)
 
 ## Architecture
 
