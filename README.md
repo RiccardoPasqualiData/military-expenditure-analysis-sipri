@@ -208,3 +208,57 @@ data, two metrics, two opposite rankings  the choice of metric shapes the story.
 - Lookup functions: VLOOKUP across sheets, INDEX+MATCH for left-side lookups, COUNTIF
 - Aggregation: pivot tables (sum, average, count), pivot charts
 - Process documentation, reproducibility and source citation
+
+- # 📊 Phase 2 — Interactive Excel Dashboard
+
+## Goal
+
+Phase 1 turned raw SIPRI data into a clean, enriched dataset. Phase 2 turns that dataset into a product --> a single interactive screen that answers the key questions about world military spending at a glance. The dashboard is designed for a non-technical reader, who can explore the data by clicking filters without touching a single formula.
+
+## Dashboard preview
+
+![Dashboard overview](images/dashboard_full.png)
+
+*Interactive filtering in action, Spending Category:High*
+
+![Dashboard filtered by Spending Category:High](images/dashboard_filtered.png)
+
+## Architecture
+
+The workbook follows a 3-layer architecture, the same separation of concerns used by professional BI tools:
+
+| Layer | Sheet | Role |
+|---|---|---|
+| Data | `Clean_Data` | Cleaned Excel Table from Phase 1, the single source of truth |
+| Engine | `Pivot_Engine` | Dedicated, named pivot tables feeding the charts (hidden in the final file) |
+| Presentation | `Dashboard` | Charts, KPI cards and slicers only. No raw numbers, no visible formulas |
+
+## Techniques used
+
+- **PivotCharts** powered by dedicated, named pivot tables (`pvt_top10`, `pvt_trend`, `pvt_region`), one pivot per chart
+- **Slicers with multi-pivot Report Connections**: Region, Spending Category and NATO filters update all charts with one click
+- **KPI cards built with cell-linked shapes**, showing live values computed with `SUM`, `COUNTA` and `AVERAGE` on the source table
+- **Custom number formats** (e.g. `#,##0 "bn $"`) for compact headline numbers
+- **Pivot grouping**: regions below ~4% of world spending merged into an "Other" category
+- **Chart decluttering**: data labels instead of value axes, message-style titles, one accent colour for the key data point
+
+## Key insights
+
+- World military spending reached **$2,461bn in 2024**, up roughly **12%** year over year
+- **North America accounts for about 42%** of world spending with only 2 of the 33 countries analysed
+- The average country-level change is **+14.4%**, higher than the +12% total growth: smaller countries are increasing their budgets faster than the giants that dominate the total
+
+## Design decisions
+
+- **KPI cards show global totals** as a fixed reference point, while charts respond to slicer filters. The card formulas read the source table rather than the pivots, a known limit of this technique that was kept as a feature: filtered charts can always be compared against the world total.
+- **Regions below ~4% were grouped into "Other"** to keep the doughnut chart readable (6 slices instead of 10). "Other" uses the lightest tone of the palette to signal a residual category.
+- **One palette, one highlight**: navy for structure, greys for context, and a single orange accent reserved for the top spender in the ranking, so the reader's eye lands on the main message first.
+- **Horizontal bars** for the Top 10 chart, because long country names stay readable that way.
+
+## Lessons learned
+
+- **Always validate the aggregation, not just the chart.** The regional doughnut initially displayed "Count of Spending Category" instead of "Sum of Spending 2024": it was counting countries per region rather than summing their spending. The chart looked perfectly plausible and told the opposite story, with Western Europe (12 countries, 15% of spending) appearing dominant instead of North America (2 countries, 42% of spending). Since then, checking that every pivot value field says "Sum of" and that grand totals reconcile with an independent calculation is part of my routine.
+- **Excel dashboards have a structural interactivity ceiling.** Each slicer click recalculates the connected pivots one at a time, so charts redraw in sequence rather than simultaneously. This is one of the practical reasons professional interactive dashboards are built in dedicated BI tools, and it directly motivates the next step of this project.
+
+---
+*Data source: SIPRI Military Expenditure Database. All figures in constant US$ billions.*
