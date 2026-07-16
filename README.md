@@ -209,7 +209,7 @@ data, two metrics, two opposite rankings  the choice of metric shapes the story.
 - Aggregation: pivot tables (sum, average, count), pivot charts
 - Process documentation, reproducibility and source citation
 
-- # 📊 Phase 2 — Interactive Excel Dashboard
+- #  Phase 2  Interactive Excel Dashboard
 
 ## Goal
 
